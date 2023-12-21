@@ -1,0 +1,21 @@
+.contact-item {
+    opacity: 0.8;
+    transition: opacity 0.3s ease-in-out;
+
+  }
+  
+  .contact-item:hover {
+    opacity: 1;
+  }
+  
+  .contact-item:hover .fa {
+    transform: scale(1.8);
+  }
+  
+  .contact-item .fa {
+    font-size: 24px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+
+  

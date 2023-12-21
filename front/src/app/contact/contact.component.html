@@ -1,0 +1,154 @@
+<div class="container mt-5">
+    <div class="h1 text-center">Get In Touch</div>
+    <!-- <div
+      class="alert alert-danger mt-3 text-center"
+      role="alert"
+      *ngIf="sendMessage.invalid && sendMessage.touched"
+    >
+      Please fill all the required fields.
+    </div> -->
+    <div
+      class="alert alert-success mt-3 text-center"
+      role="alert"
+      *ngIf="formSubmitted"
+    >
+      Data sent successfully!
+    </div>
+  
+    <div class="mt-5">
+      <div class="row mb-5">
+        <div class="col-12 col-lg-6 bg-dark text-light rounded mb-5">
+          <h3 class="mb-5 mt-5 text-center">Contact Us</h3>
+          <form
+            class="contactForm"
+            [formGroup]="sendMessage"
+            (ngSubmit)="onSubmit()"
+          >
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label class="label" for="name">Full Name</label>
+                  <div
+                    class="text-danger"
+                    *ngIf="
+                      sendMessage.controls['fullName'].touched &&
+                      sendMessage.controls['fullName'].invalid
+                    "
+                  >
+                    <div
+                      *ngIf="
+                        sendMessage.controls['fullName'].hasError('required')
+                      "
+                    >
+                    fullName is required
+                    </div>
+                  </div>
+                  <input
+                    formControlName="fullName"
+                    type="text"
+                    class="form-control"
+                    placeholder="Name"
+                  />
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label class="label" for="email">Email Address</label>
+  
+                  <div
+                    class="text-danger"
+                    *ngIf="
+                      sendMessage.controls['email'].touched &&
+                      sendMessage.controls['email'].invalid
+                    "
+                  >
+                    <div
+                      *ngIf="sendMessage.controls['email'].hasError('required')"
+                    >
+                      email is required
+                    </div>
+                    <div *ngIf="sendMessage.controls['email'].hasError('email')">
+                      email is invalid
+                    </div>
+                  </div>
+                  <input
+                    formControlName="email"
+                    type="email"
+                    class="form-control"
+                    placeholder="Email"
+                  />
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="label" for="subject">Subject</label>
+                  <div
+                    class="text-danger"
+                    *ngIf="
+                      sendMessage.controls['subject'].touched &&
+                      sendMessage.controls['subject'].invalid
+                    "
+                  >
+                    <div
+                      *ngIf="sendMessage.controls['subject'].hasError('required')"
+                    >
+                      subject is required
+                    </div>
+                  </div>
+  
+                  <input
+                    formControlName="subject"
+                    type="text"
+                    class="form-control"
+                    placeholder="Subject"
+                  />
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="label" for="#">Message</label>
+                  <div
+                    class="text-danger"
+                    *ngIf="
+                      sendMessage.controls['message'].touched &&
+                      sendMessage.controls['message'].invalid
+                    "
+                  >
+                    <div
+                      *ngIf="sendMessage.controls['message'].hasError('required')"
+                    >
+                      message is required
+                    </div>
+                  </div>
+                  <textarea
+                    formControlName="message"
+                    class="form-control"
+                    cols="30"
+                    rows="4"
+                    placeholder="Message"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="col-md-12 m-2">
+                <div class="form-group">
+                  <input
+                    [disabled]="sendMessage.invalid"
+                    type="submit"
+                    value="Send Message"
+                    class="btn btn-light"
+                  />
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div
+          class="col-12 col-lg-6 d-flex align-items-center justify-content-center"
+        >
+          <img
+            class="img-fluid border rounded"
+            src="assets/img/contact.jpg"
+          />
+        </div>
+    </div>
+  </div>

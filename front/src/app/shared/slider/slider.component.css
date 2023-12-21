@@ -1,0 +1,26 @@
+@import 'swiper/less';
+
+/* @import 'swiper/less/navigation'; */
+/* @import 'swiper/less/pagination'; */
+
+.swiper-container {
+    width: 100%;
+  }
+  .swiper-slide {
+    text-align: center;
+  }
+
+  .swiper-slide img {
+    width: 80%;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .swiper-slide img:hover {
+    transform: scale(1.1);
+  }
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: aqua;
+    background-color: #000;
+    border-radius: 30%;
+  }

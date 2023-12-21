@@ -1,0 +1,13 @@
+  .err {
+    font-size: 150px;
+  }
+  
+  @media (max-width: 767px) {
+    .notfound-404 {
+        height: 150px; 
+    }
+  
+    .err {
+        font-size: 100px; 
+    }
+  }

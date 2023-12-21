@@ -1,0 +1,19 @@
+
+<swiper-container class="mb-5">
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"
+        *ngFor="let products of product"
+      >
+        <swiper-slide>
+          <a [routerLink]="['/product',products.id]">
+            <img src="{{imgUrl}}{{products.id}}/{{products.image}}" alt="">
+          </a>
+        </swiper-slide>
+      </div>
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+</swiper-container>
+    
