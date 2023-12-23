@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ProductServiceService {
   private apiUrl = environment.backEndUrl;
+  //  apiUrl='http://back.elifeegypt.com/public/index.php/api/';
 
   constructor(private http:HttpClient) {}
 
