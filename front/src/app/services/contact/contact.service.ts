@@ -6,8 +6,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ContactService {
-  private apiUrl = environment.backEndUrl;
-  // apiUrl='http://back.elifeegypt.com/public/index.php/api/';
+  // private apiUrl = environment.backEndUrl;
+  apiUrl='http://back.elifeegypt.com/public/index.php/api/';
 
 
   constructor(private http:HttpClient) {}
