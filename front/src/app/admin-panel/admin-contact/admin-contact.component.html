@@ -53,9 +53,11 @@
 </div>
 
 
+
+<div class="text-center h2" 
+*ngIf="!message || message.length === 0">
+    <p>No Messages Available</p>
+  </div>
 </div>
 
 
-<div *ngIf="!message || message.length === 0">
-    <p>No messages available</p>
-  </div>
