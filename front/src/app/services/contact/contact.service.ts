@@ -14,6 +14,18 @@ export class ContactService {
 
   sendContact(contact:any){
     return this.http.post(`${this.apiUrl}contacts`, contact);
+  }
 
+  getContact(){
+    return this.http.get(`${this.apiUrl}contacts`);
+  }
+  getContactById(contactId: number) {
+    const url = `${this.apiUrl}contacts/${contactId}`;
+    return this.http.delete(url);
+  }
+
+  deleteContact(contactId: number) {
+    const url = `${this.apiUrl}contacts/${contactId}`;
+    return this.http.delete(url);
   }
 }

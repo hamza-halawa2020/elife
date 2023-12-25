@@ -47,7 +47,16 @@ class ContactController extends Controller
      */
     public function show(string $id)
     {
-        //
+        try {
+            // if (Gate::allows("is-admin")) {
+                $contact = Contact::findOrFail($id);
+                return new ContactResource($contact);
+            // } else {
+                // return response()->json(['message' => 'not allow to show contacts.'], 403);
+            // }
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'An error occurred while showing contacts.'], 500);
+        }
     }
 
     /**
@@ -61,8 +70,20 @@ class ContactController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
-    }
-}
+
+
+     public function destroy(string $id)
+     {
+         try {
+            //  if (Gate::allows("is-admin")) {
+                 $contact = Contact::findOrFail($id);
+                 $contact->delete();
+                 return response()->json(['message' => 'Contact deleted successfully'], 200);
+            //  } else {
+                //  return response()->json(['message' => 'not allow to show contacts.'], 403);
+            //  }
+         } catch (\Throwable $th) {
+             return response()->json(['message' => 'An error occurred while deleting the contact'], 500);
+         }
+     }
+ }

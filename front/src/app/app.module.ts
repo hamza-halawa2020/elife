@@ -11,6 +11,7 @@ import { ContactComponent } from './contact/contact.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AdminPanelModule } from './admin-panel/admin-panel.module';
 register();
 
 @NgModule({
@@ -27,6 +28,7 @@ register();
     BrowserModule,
     AppRoutingModule,
     SharedModule,
+    AdminPanelModule,
     HttpClientModule,
     ReactiveFormsModule
   ],

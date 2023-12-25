@@ -1,0 +1,61 @@
+<div class="container">
+    <div *ngIf="message && message.length > 0">
+    <table class="table table-bordered text-center">
+        <thead>
+          <tr>
+            <th>Index</th>
+            <!-- <th>ID</th>
+            <th>Created At</th> -->
+            <th>Updated At</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Subject</th>
+            <th>Message</th>
+            <th>Action</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let msg of message ; let i = index">
+            <td>{{i + 1}}</td>
+            <!-- <td>{{msg.id}}</td> -->
+            <td>{{msg.created_at}}</td>
+            <!-- <td>{{msg.updated_at}}</td> -->
+            <td>{{msg.fullName}}</td>
+            <td>{{msg.email}}</td>
+            <td>{{msg.subject}}</td>
+            <td>{{msg.message}}</td>
+            <th><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Delete
+                  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer"
+        >
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger"
+           (click)="deleteMessage(msg.id)"
+          >Delete</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- Modal -->
+
+              </button></th>
+          </tr>
+        </tbody>
+      </table>
+</div>
+
+
+</div>
+
+
+<div *ngIf="!message || message.length === 0">
+    <p>No messages available</p>
+  </div>
