@@ -37,13 +37,13 @@ getProduct() {
     this.productService.getProductById(this.id).subscribe((data) => {
       this.product = Object.values(data)[0];
       // this.mainProductImage = `${this.x}${this.product.image}`;
-      this.mainProductImage = `${this.x}${this.id}/${this.product.image}`;
+      this.mainProductImage = `${this.x}${this.product.name}/${this.product.image}`;
     });
   });
 }
 
 changeImage(image: string): void {
   // this.mainProductImage = `${this.x}${image}`;
-  this.mainProductImage = `${this.x}${this.id}/${image}`;
+  this.mainProductImage = `${this.x}${this.product.name}/${image}`;
 }
 }

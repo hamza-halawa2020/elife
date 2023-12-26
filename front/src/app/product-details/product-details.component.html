@@ -12,7 +12,7 @@
                 <li *ngFor="let image of thumbnailImages">
                   <img
                     (click)="changeImage(image)"
-                    [src]="x +id+'/'+ image"
+                    [src]="x +product.name+'/'+ image"
                     width="70"
                   />
                 </li>

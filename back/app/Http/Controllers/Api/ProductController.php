@@ -8,7 +8,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Exception;
-
+// use Storage;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -28,15 +31,63 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    // public function store(StoreProductRequest $request)
+    // {
+
+        
+
+
+    //     // try {
+    //         $data = request()->all();
+    //         $productName = $request->name;
+    //         $path = 'img/products/';
+    //         $productFolder = public_path($path . $productName);
+    //         if (!is_dir($productFolder)) {
+    //             mkdir($productFolder, 0755, true);
+    //         }
+
+    //         if ($request->hasFile('image')) {
+    //             $imagePath = $request->file('image')->store($path, 'public');
+    //         } else {
+    //             $imagePath = null;
+    //         }
+    //         $data['image'] = $imagePath;
+
+    //         Product::create($data);
+
+    //         return response()->json(['data' => new ProductResource($data)], 200);
+    //     // } catch (Exception $e) {
+    //     //     return response()->json(['message' => 'An error occurred while creating the product'], 500);
+    //     // }
+    // }
+
     public function store(StoreProductRequest $request)
     {
         try {
-            $product = Product::create($request->all());
-            return response()->json(['data' => new ProductResource($product)], 200);
+        $data = $request->all();
+        $productName = $request->name;
+        $path = 'img/products/';
+        $productFolder = public_path($path . $productName);   
+        if (!is_dir($productFolder)) {
+            mkdir($productFolder, 0755, true);
+        } 
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');   
+            $filename = $productName . time() . '.' . $file->getClientOriginalExtension();    
+            $file->move($productFolder, $filename);   
+            $data['image'] = $filename;
+        } else {
+            $data['image'] = null;
+        }
+        Product::create($data);
+        return response()->json(['data' => new ProductResource($data)], 200);
         } catch (Exception $e) {
             return response()->json(['message' => 'An error occurred while creating the product'], 500);
         }
     }
+    
+
+    
 
     /**
      * Display the specified resource.

@@ -11,6 +11,7 @@ export class AddProductComponent {
 
 add: FormGroup;
 formSubmitted: boolean = false;
+imageFile: any;
 
 constructor(private products:ProductServiceService){
 
@@ -27,17 +28,39 @@ constructor(private products:ProductServiceService){
       ]),
       image: new FormControl('', [
       Validators.required,
-      Validators.minLength(5),
-      Validators.maxLength(16),
+      // Validators.minLength(5),
+      // Validators.maxLength(16),
     ]),
   });
 }
 
+saveImageToDataBase(event: any) {
+  this.imageFile = event.target.files[0];
+  // console.log(this.imageFile)
+}
+
+
+// generateImageUrl(image: string) {
+//   return http://localhost:8000/storage/${image};
+// }
+
+
+
+// [src]="generateImageUrl(pharmaData.pharmacy_image)"
+
+
+
+
 onSubmit() {
   if (this.add.valid) {
     const productData = this.add.value;
+    const formData = new FormData();
+    formData.append('name', productData.name);
+    formData.append('description', productData.description);
+    formData.append('image', this.imageFile);
+// console.log();
 
-    this.products.AddProduct(productData).subscribe(
+    this.products.AddProduct(formData).subscribe(
       (response: any) => {
         this.formSubmitted = true;
         // console.log(this.sendMessage.value);

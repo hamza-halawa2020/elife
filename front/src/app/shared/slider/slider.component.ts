@@ -9,7 +9,7 @@ import Swiper from 'swiper';
 })
 export class SliderComponent implements AfterViewInit {
 product:any=[];
-imgUrl = `${environment.imgUrl}/products/`;
+imgUrl = `${environment.imgUrl}products/`;
 
 constructor(private productService:ProductServiceService){}
 

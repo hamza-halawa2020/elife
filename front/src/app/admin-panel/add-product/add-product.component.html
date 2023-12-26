@@ -13,6 +13,7 @@
     class="contactForm"
     [formGroup]="add"
     (ngSubmit)="onSubmit()"
+    
   >
     <div class="col-12">
       <label for="ProductName" class="form-label">Product Name</label>
@@ -25,7 +26,7 @@
         </div>
       </div>
       <input
-        name="name"
+        formControlName="name"
         type="text"
         class="form-control"
         id="ProductName"
@@ -49,7 +50,7 @@
         </div>
       </div>
       <textarea
-        name="description"
+        formControlName="description"
         type="text"
         class="form-control"
         id="ProductDescription"
@@ -63,10 +64,16 @@
         *ngIf="add.controls['image'].touched && add.controls['image'].invalid"
       >
         <div *ngIf="add.controls['image'].hasError('required')">
-          Product Name is required
+          Product image is required
         </div>
       </div>
-      <input name="image" type="text" class="form-control" id="ProductImage" />
+      <input
+      (change)="saveImageToDataBase($event)"
+        formControlName="image"
+        type="file"
+        class="form-control"
+        id="ProductImage"
+      />
     </div>
     <div class="col-12">
       <input
