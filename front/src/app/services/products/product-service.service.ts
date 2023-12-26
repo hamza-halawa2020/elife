@@ -10,6 +10,10 @@ export class ProductServiceService {
 
   constructor(private http:HttpClient) {}
 
+  AddProduct(product:any){
+    return this.http.post(`${this.apiUrl}products`, product);
+  }
+
   getAllProducts(){
     const url = `${this.apiUrl}products`;
     return this.http.get(url);
@@ -18,4 +22,6 @@ export class ProductServiceService {
     const url = `${this.apiUrl}products/${productId}`;
     return this.http.get(url);
   }
+
+  
 }

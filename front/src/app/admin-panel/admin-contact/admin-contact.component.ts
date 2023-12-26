@@ -23,7 +23,7 @@ export class AdminContactComponent {
 
   deleteMessage(contactId: number) {
     this.messages.deleteContact(contactId).subscribe((data) => {
-      this.message = Object.values(data)[0];
+      this.message = data;
       this.getMessages();
     },
     (error) => {
@@ -40,13 +40,6 @@ export class AdminContactComponent {
         console.log('error',error);      
         });
       }
-    
-
-
-
-
-
-
 }
 
 

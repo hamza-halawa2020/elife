@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="h2 text-center">Add New Product</div>
+  <div
+    class="alert alert-success mt-3 text-center"
+    role="alert"
+    *ngIf="formSubmitted"
+  >
+    Data sent successfully!
+  </div>
+
+  <form
+    class="row g-3 m-3"
+    class="contactForm"
+    [formGroup]="add"
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="col-12">
+      <label for="ProductName" class="form-label">Product Name</label>
+      <div
+        class="text-danger"
+        *ngIf="add.controls['name'].touched && add.controls['name'].invalid"
+      >
+        <div *ngIf="add.controls['name'].hasError('required')">
+          Product Name is required
+        </div>
+      </div>
+      <input
+        name="name"
+        type="text"
+        class="form-control"
+        id="ProductName"
+        placeholder="Product Name"
+      />
+    </div>
+
+    <div class="col-12">
+      <label for="ProductDescription" class="form-label"
+        >Product Description</label
+      >
+      <div
+        class="text-danger"
+        *ngIf="
+          add.controls['description'].touched &&
+          add.controls['description'].invalid
+        "
+      >
+        <div *ngIf="add.controls['description'].hasError('required')">
+          Product description is required
+        </div>
+      </div>
+      <textarea
+        name="description"
+        type="text"
+        class="form-control"
+        id="ProductDescription"
+      ></textarea>
+    </div>
+
+    <div class="col-12">
+      <label for="ProductImage" class="form-label">Product Image</label>
+      <div
+        class="text-danger"
+        *ngIf="add.controls['image'].touched && add.controls['image'].invalid"
+      >
+        <div *ngIf="add.controls['image'].hasError('required')">
+          Product Name is required
+        </div>
+      </div>
+      <input name="image" type="text" class="form-control" id="ProductImage" />
+    </div>
+    <div class="col-12">
+      <input
+        [disabled]="add.invalid"
+        type="submit"
+        value="Add"
+        class="btn btn-primary"
+      />
+    </div>
+  </form>
+</div>

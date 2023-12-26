@@ -21,7 +21,12 @@ export class ContactComponent {
         Validators.minLength(5),
         Validators.maxLength(16),
       ]),
-      email: new FormControl('', [Validators.required, Validators.email]),
+      email: new FormControl('', [
+         Validators.required,
+         Validators.email,
+         Validators.minLength(15),
+         Validators.maxLength(50),
+        ]),
       subject: new FormControl('', [
         Validators.required,
         Validators.minLength(5),
@@ -30,15 +35,17 @@ export class ContactComponent {
       message: new FormControl('', [
         Validators.required,
         Validators.minLength(8),
+        Validators.maxLength(255),
+
       ]),
     });
   }
 
   onSubmit() {
     if (this.sendMessage.valid) {
-      const contatcData = this.sendMessage.value;
+      const contactData = this.sendMessage.value;
 
-      this.userService.sendContact(contatcData).subscribe(
+      this.userService.sendContact(contactData).subscribe(
         (response: any) => {
           this.formSubmitted = true;
           // console.log(this.sendMessage.value);

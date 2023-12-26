@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProductRequest;
 use App\Http\Resources\ProductResource;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Exception;
+
+
 class ProductController extends Controller
 {
     /**
@@ -25,9 +28,14 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        //
+        try {
+            $product = Product::create($request->all());
+            return response()->json(['data' => new ProductResource($product)], 200);
+        } catch (Exception $e) {
+            return response()->json(['message' => 'An error occurred while creating the product'], 500);
+        }
     }
 
     /**

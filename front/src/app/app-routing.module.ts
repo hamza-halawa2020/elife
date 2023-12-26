@@ -8,6 +8,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactComponent } from './contact/contact.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { AdminLoginComponent } from './admin-panel/admin-login/admin-login.component';
+import { AddProductComponent } from './admin-panel/add-product/add-product.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: 'messages',
     component: AdminContactComponent,
+  },
+  {
+    path: 'add',
+    component: AddProductComponent,
   },
   {
     path: '**',
