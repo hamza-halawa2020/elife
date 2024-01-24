@@ -8,10 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Exception;
-// use Storage;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
+
 
 class ProductController extends Controller
 {
@@ -20,10 +17,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        try{
-            $products = Product::all();
+        try {
+            // $products = Product::all();
+            $products = Product::with('images.product')->get();
             return ProductResource::collection($products);
-        } catch (Exception  $e) {
+        } catch (Exception $e) {
             return response()->json(['message' => 'An error occurred while showing products.'], 500);
         }
     }
@@ -31,75 +29,60 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    // public function store(StoreProductRequest $request)
-    // {
 
-        
-
-
-    //     // try {
-    //         $data = request()->all();
-    //         $productName = $request->name;
-    //         $path = 'img/products/';
-    //         $productFolder = public_path($path . $productName);
-    //         if (!is_dir($productFolder)) {
-    //             mkdir($productFolder, 0755, true);
-    //         }
-
-    //         if ($request->hasFile('image')) {
-    //             $imagePath = $request->file('image')->store($path, 'public');
-    //         } else {
-    //             $imagePath = null;
-    //         }
-    //         $data['image'] = $imagePath;
-
-    //         Product::create($data);
-
-    //         return response()->json(['data' => new ProductResource($data)], 200);
-    //     // } catch (Exception $e) {
-    //     //     return response()->json(['message' => 'An error occurred while creating the product'], 500);
-    //     // }
-    // }
 
     public function store(StoreProductRequest $request)
     {
-        try {
-        $data = $request->all();
-        $productName = $request->name;
-        $path = 'img/products/';
-        $productFolder = public_path($path . $productName);   
-        if (!is_dir($productFolder)) {
-            mkdir($productFolder, 0755, true);
-        } 
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');   
-            $filename = $productName . time() . '.' . $file->getClientOriginalExtension();    
-            $file->move($productFolder, $filename);   
-            $data['image'] = $filename;
-        } else {
-            $data['image'] = null;
-        }
-        Product::create($data);
-        return response()->json(['data' => new ProductResource($data)], 200);
-        } catch (Exception $e) {
-            return response()->json(['message' => 'An error occurred while creating the product'], 500);
-        }
-    }
-    
 
-    
+        try {
+            // if (Gate::allows("is-admin")) {
+            $data = $request->only([
+                'name',
+                'description',
+            ]);
+            $product = Product::create([
+                'name' => $data['name'],
+                'description' => $data['description'],
+            ]);
+
+            if ($request->hasFile('image')) {
+                foreach ($request->file('image') as $image) {
+                    $extension = $image->getClientOriginalExtension();
+                    $filename = time() . '_' . uniqid() . '.' . $extension;
+                    $folderPath = 'images/products/' . $product->id;
+                    $image->move(public_path($folderPath), $filename);
+                    $product->images()->create([
+                        'product_id' => $product->id,
+                        'image' => $folderPath . '/' . $filename,
+                    ]);
+                }
+            }
+            $product->load('images');
+
+            return response()->json(['data' => new ProductResource($product)], 201);
+            // } else {
+            //     return response()->json(['message' => 'not allow to delete product.'], 403);
+            // }
+        } catch (Exception $e) {
+            return response()->json(['error' => 'Internal Server Error'], 500);
+        }
+
+    }
+
 
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        try{
-        $product = Product::findOrFail($id);
-        return new ProductResource($product);
-    } catch (Exception  $e) {
-        return response()->json(['message' => 'An error occurred while showing products.'], 500);
-    }
+        try {
+            // $product = Product::findOrFail($id);
+            $product = Product::with('images.product')->findOrFail($id);
+
+            return new ProductResource($product);
+        } catch (Exception $e) {
+            return response()->json(['message' => 'An error occurred while showing products.'], 500);
+        }
     }
 
     /**

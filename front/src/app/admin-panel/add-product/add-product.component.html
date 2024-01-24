@@ -56,9 +56,9 @@
         id="ProductDescription"
       ></textarea>
     </div>
-
+ 
     <div class="col-12">
-      <label for="ProductImage" class="form-label">Product Image</label>
+      <label for="image" class="form-label">Product Image <small class="text-danger">"please choose more one image"</small></label>
       <div
         class="text-danger"
         *ngIf="add.controls['image'].touched && add.controls['image'].invalid"
@@ -73,6 +73,7 @@
         type="file"
         class="form-control"
         id="ProductImage"
+        multiple
       />
     </div>
     <div class="col-12">

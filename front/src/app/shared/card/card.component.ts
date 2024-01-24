@@ -9,7 +9,11 @@ import { environment } from 'src/environments/environment';
 export class CardComponent {
 @Input() products:any;
 
-imgUrl = `${environment.imgUrl}products/`;
+imgUrl = `${environment.imgUrl}`;
+
+ngOnInit() {
+  // console.log('imgUrl:', this.imgUrl);
 
 
+}
 }

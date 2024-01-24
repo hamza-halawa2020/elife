@@ -8,6 +8,7 @@ import { ProductServiceService } from '../services/products/product-service.serv
 })
 export class ProductsComponent {
   products :any = [];
+  
 constructor(private producService:ProductServiceService){}
 
 ngOnInit(){
