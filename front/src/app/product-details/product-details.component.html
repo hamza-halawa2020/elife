@@ -1,38 +1,75 @@
-
 <div class="container mt-5 mb-5">
-    <div class="card">
-      <div class="row g-0">
-        <div class="col-md-6 border-end">
-          <div class="d-flex flex-column justify-content-center">
-            <div class="main_image">
-              <img [src]=" mainProductImage" width="350" />
-            </div>
-            <div class="thumbnail_images">
-              <ul id="thumbnail">
-                <li *ngFor="let image of thumbnailImages">
-                  <img
-                    (click)="changeImage(image)"
-                    [src]="x +product.name+'/'+ image"
-                    width="70"
-                  />
-                </li>
-              </ul>
+  <div class="card">
+    <div class="row g-0">
+      <div class="col-md-6 border-end">
+        <div class="d-flex flex-column justify-content-center">
+          <div class="main_image zoomable">
+            <img [src]="mainProductImage" width="180 rem" />
+          </div>
+
+          <!-- ... existing code ... -->
+          <div class="thumbnail_images">
+            <div
+              id="thumbnailCarousel"
+              class="carousel slide"
+              data-bs-ride="carousel"
+            >
+              <div class="carousel-inner">
+                <div
+                  *ngFor="let chunk of thumbnailChunks; let i = index"
+                  class="carousel-item"
+                  [class.active]="i === 0"
+                >
+                  <ul id="thumbnail" class="image-carousel">
+                    <li
+                      *ngFor="let image of chunk"
+                      (click)="changeImage(image)"
+                    >
+                      <img [src]="imgUrl + image" height="70 rem" />
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <button
+                class="carousel-control-prev bg-warning"
+                type="button"
+                data-bs-target="#thumbnailCarousel"
+                data-bs-slide="prev"
+              >
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button
+                class="carousel-control-next bg-warning"
+                type="button"
+                data-bs-target="#thumbnailCarousel"
+                data-bs-slide="next"
+              >
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Next</span>
+              </button>
             </div>
           </div>
+          <!-- ... existing code ... -->
         </div>
-        <div class="col-md-6">
-          <div class="p-3 right-side">
-            <div class="d-flex justify-content-between align-items-center">
-              <h3>{{ product.name }}</h3>
-            </div>
-            <div class="mt-2 pr-3 content">
-              <p>
-                {{ product.description }}
-              </p>
-            </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="p-3 right-side">
+          <div class="d-flex justify-content-between align-items-center">
+            <h3>{{ productDetails.name }}</h3>
+          </div>
+          <div class="mt-2 pr-3 content">
+            <p>{{ productDetails.description }}</p>
           </div>
         </div>
       </div>
     </div>
   </div>
-
+</div>

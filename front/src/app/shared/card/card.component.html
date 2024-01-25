@@ -1,6 +1,10 @@
-<div [routerLink]="['/product',products.id]" class="card">
-    <img class="card-img" [src]="imgUrl " alt="{{products.name}}">
-    <div class="h3 text-center">
-        {{products.name}}
-    </div>
+<div [routerLink]="['/product', products.id]" class="card">
+  <img
+    class="card-img"
+    [src]="imgUrl + products.images[0].image"
+    alt="{{ products.name }}"
+  />
+  <div class="h3 text-center">
+    {{ products.name }}
+  </div>
 </div>

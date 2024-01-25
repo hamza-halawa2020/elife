@@ -33,15 +33,10 @@ export class AddProductComponent {
   }
 
   saveImageToDataBase(event: any) {
-    this.imageFile = event.target.files[0];
+    this.imageFile = event.target.files;
     // console.log(this.imageFile)
   }
 
-  // generateImageUrl(image: string) {
-  //   return http://localhost:8000/storage/${image};
-  // }
-
-  // [src]="generateImageUrl(pharmaData.pharmacy_image)"
 
   onSubmit() {
     if (this.add.valid) {
