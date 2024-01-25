@@ -56,6 +56,9 @@ export class AddProductComponent {
       formData.append('name', productData.name);
       formData.append('description', productData.description);
 
+      console.log('product',formData);
+      
+
       this.products.AddProduct(formData).subscribe(
         (response: any) => {
           this.formSubmitted = true;
