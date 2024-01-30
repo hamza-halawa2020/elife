@@ -9,6 +9,8 @@ import { ContactComponent } from './contact/contact.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { AdminLoginComponent } from './admin-panel/admin-login/admin-login.component';
 import { AddProductComponent } from './admin-panel/add-product/add-product.component';
+import { unauthGuard } from './guards/unauth.guard';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -33,14 +35,19 @@ const routes: Routes = [
   {
     path: 'login',
     component: AdminLoginComponent,
+    canActivate: [unauthGuard],
+
   },
   {
     path: 'messages',
     component: AdminContactComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'add',
     component: AddProductComponent,
+    canActivate: [AuthGuard],
+
   },
   {
     path: '**',

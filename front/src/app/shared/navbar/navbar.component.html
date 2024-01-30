@@ -1,74 +1,92 @@
-  
-  <nav class="navbar navbar-expand-lg bg-body-tertiary shadow sticky-top mb-1">
-    <div class="container">
-      <a class="navbar-brand" routerLink="/">
-        <app-logo></app-logo>
-      </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a
-              class="hover-3 nav-link"
-              routerLink="/"
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: true }"
-              >Home</a
-            >
-          </li>
-          <li>
-            <a class="hover-3 nav-link" routerLink="products" routerLinkActive="active"
-              >All Products</a
-            >
-          </li>
-          <li>
-            <a class="hover-3 nav-link" routerLink="add" routerLinkActive="active"
-              >Add Product</a
-            >
-          </li>
-  
-          <li>
-            <a class="hover-3 nav-link" routerLink="about" routerLinkActive="active"
-              >About Us</a
-            >
-          </li>
-          
- 
-          <li class="nav-item">
-            <a
-              class="hover-3 nav-link"
-              routerLink="contact"
-              routerLinkActive="active"
-              >Contact Us</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="hover-3 nav-link"
-              routerLink="messages"
-              routerLinkActive="active"
-              >Messages</a
-            >
-          </li>
-
-        </ul>
-
-          <a class="" routerLink="login" routerLinkActive="active"
-            ><img src="assets/img/login.png" alt="login" width="25px"></a
+<nav class="navbar navbar-expand-lg bg-body-tertiary shadow sticky-top mb-1">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">
+      <app-logo></app-logo>
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="hover-3 nav-link"
+            routerLink="/"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Home</a
           >
-          <a class="" routerLink="login" routerLinkActive="active"
-            ><img src="assets/img/logout.png" alt="logout" width="30px"></a
+        </li>
+        <li>
+          <a
+            class="hover-3 nav-link"
+            routerLink="products"
+            routerLinkActive="active"
+            >All Products</a
           >
-      </div>
+        </li>
+        <li>
+          <a
+            class="hover-3 nav-link"
+            *ngIf="isLoggedIn()"
+            routerLink="add"
+            routerLinkActive="active"
+            >Add Product</a
+          >
+        </li>
+
+        <li>
+          <a
+            class="hover-3 nav-link"
+            routerLink="about"
+            routerLinkActive="active"
+            >About Us</a
+          >
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="hover-3 nav-link"
+            routerLink="contact"
+            routerLinkActive="active"
+            >Contact Us</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="hover-3 nav-link"
+            routerLink="messages"
+            routerLinkActive="active"
+            *ngIf="isLoggedIn()"
+            >Messages</a
+          >
+        </li>
+      </ul>
+
+      <a
+        class=""
+        *ngIf="!isLoggedIn()"
+        routerLink="login"
+        routerLinkActive="active"
+        ><img src="assets/img/login.png" alt="login" width="25px"
+      /></a>
+      <a
+        class=""
+        routerLink=""
+        *ngIf="isLoggedIn()"
+        (click)="logout()"
+
+        routerLinkActive="active"
+        ><img src="assets/img/logout.png" alt="logout" width="30px"
+      /></a>
     </div>
-  </nav>
+  </div>
+</nav>

@@ -17,13 +17,19 @@ class ContactController extends Controller
     /**
      * Display a listing of the resource.
      */
+    function __construct()
+    {
+        $this->middleware("auth:sanctum")->except(['store']);
+    }
+
+
 
     public function index()
     {
-        try{
+        try {
             $contacts = Contact::all();
             return ContactResource::collection($contacts);
-        } catch (Exception  $e) {
+        } catch (Exception $e) {
             return response()->json(['message' => 'An error occurred while showing contacts.'], 500);
         }
     }
@@ -49,10 +55,10 @@ class ContactController extends Controller
     {
         try {
             // if (Gate::allows("is-admin")) {
-                $contact = Contact::findOrFail($id);
-                return new ContactResource($contact);
+            $contact = Contact::findOrFail($id);
+            return new ContactResource($contact);
             // } else {
-                // return response()->json(['message' => 'not allow to show contacts.'], 403);
+            // return response()->json(['message' => 'not allow to show contacts.'], 403);
             // }
         } catch (\Throwable $th) {
             return response()->json(['message' => 'An error occurred while showing contacts.'], 500);
@@ -72,18 +78,18 @@ class ContactController extends Controller
      */
 
 
-     public function destroy(string $id)
-     {
-         try {
+    public function destroy(string $id)
+    {
+        try {
             //  if (Gate::allows("is-admin")) {
-                 $contact = Contact::findOrFail($id);
-                 $contact->delete();
-                 return response()->json(['message' => 'Contact deleted successfully'], 200);
+            $contact = Contact::findOrFail($id);
+            $contact->delete();
+            return response()->json(['message' => 'Contact deleted successfully'], 200);
             //  } else {
-                //  return response()->json(['message' => 'not allow to show contacts.'], 403);
+            //  return response()->json(['message' => 'not allow to show contacts.'], 403);
             //  }
-         } catch (\Throwable $th) {
-             return response()->json(['message' => 'An error occurred while deleting the contact'], 500);
-         }
-     }
- }
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'An error occurred while deleting the contact'], 500);
+        }
+    }
+}

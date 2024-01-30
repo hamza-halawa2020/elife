@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\Api\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('products',ProductController::class);
 Route::apiResource('contacts',ContactController::class);
 
+Route::post('login', [LoginController::class, 'login']);

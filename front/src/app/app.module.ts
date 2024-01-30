@@ -30,7 +30,8 @@ register();
     SharedModule,
     AdminPanelModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AdminPanelModule
   ],
   providers: [],
   bootstrap: [AppComponent],
