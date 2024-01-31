@@ -17,10 +17,10 @@ class ContactController extends Controller
     /**
      * Display a listing of the resource.
      */
-    function __construct()
-    {
-        $this->middleware("auth:sanctum")->except(['store']);
-    }
+    // function __construct()
+    // {
+    //     $this->middleware("auth:sanctum")->except(['store']);
+    // }
 
 
 
@@ -54,12 +54,9 @@ class ContactController extends Controller
     public function show(string $id)
     {
         try {
-            // if (Gate::allows("is-admin")) {
             $contact = Contact::findOrFail($id);
             return new ContactResource($contact);
-            // } else {
-            // return response()->json(['message' => 'not allow to show contacts.'], 403);
-            // }
+
         } catch (\Throwable $th) {
             return response()->json(['message' => 'An error occurred while showing contacts.'], 500);
         }
