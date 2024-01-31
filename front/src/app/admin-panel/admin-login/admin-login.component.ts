@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { TokenAuthInterceptor } from 'src/app/interceptor/token-auth.interceptor';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -29,7 +28,7 @@ export class AdminLoginComponent {
       this.formSubmitted = true;
       this.auth.login(this.login.value).subscribe({
         next: (res: any) => {
-          const took = (TokenAuthInterceptor.accessToken = res.token);
+          // const took = (TokenAuthInterceptor.accessToken = res.token);
           this.login.reset();
           this.auth.setTokenInCookie(res.role);
           this.auth.setTokenInCookie(res.token);
