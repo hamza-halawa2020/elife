@@ -4,22 +4,22 @@ import { ProductServiceService } from '../services/products/product-service.serv
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css']
+  styleUrls: ['./products.component.css'],
 })
 export class ProductsComponent {
-  products :any = [];
-  
-constructor(private producService:ProductServiceService){}
+  products: any = [];
 
-ngOnInit(){
-  this.allProducts();
-}
+  constructor(private producService: ProductServiceService) {}
 
-allProducts(){
-  this.producService.getAllProducts().subscribe((data)=>{
-    // this.products = data;
-    this.products = Object.values(data)[0];
-    // console.log("Data",this.products);
-  });
-}
+  ngOnInit() {
+    this.allProducts();
+  }
+
+  allProducts() {
+    this.producService.getAllProducts().subscribe((data) => {
+      // this.products = data;
+      this.products = Object.values(data)[0];
+      // console.log("Data",this.products);
+    });
+  }
 }
