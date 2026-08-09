@@ -20,7 +20,7 @@ use App\Http\Controllers\Api\LoginController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::apiResource('contacts',ContactController::class)->middleware('auth:sanctum');
+Route::apiResource('contacts', ContactController::class)->middleware('auth:sanctum')->except(['store']);
 Route::apiResource('products',ProductController::class);
 
 Route::post('login', [LoginController::class, 'login']);
