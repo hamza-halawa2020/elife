@@ -1,0 +1,10 @@
+vendor
+node_modules
+public/build
+storage/logs/*.log
+.git
+.gitignore
+.env
+Dockerfile
+README.md
+npm-debug.log*
